@@ -1,0 +1,273 @@
+{
+  "scan_timestamp": "2026-03-17T11:33:36+08:00",
+  "project_name": "DeepTutor",
+  "project_description": "AI 驱动的个性化学习助手平台，基于多智能体协作与 RAG 技术",
+  "root_path": "/Users/yyj/GitProject/education/DeepTutor",
+  "modules": [
+    {
+      "module_id": "src_agents_solve",
+      "module_path": "src/agents/solve",
+      "module_name": "Solve - 双循环问题求解系统",
+      "language": "Python",
+      "entry_files": ["main_solver.py"],
+      "key_interfaces": ["MainSolver.solve()"],
+      "test_directory": "tests/agents/solve",
+      "important_paths": [
+        "analysis_loop/investigate_agent.py",
+        "analysis_loop/note_agent.py",
+        "solve_loop/plan_agent.py",
+        "solve_loop/manager_agent.py",
+        "solve_loop/solve_agent.py",
+        "solve_loop/tool_agent.py",
+        "solve_loop/check_agent.py",
+        "memory/investigate_memory.py",
+        "memory/solve_memory.py"
+      ],
+      "documentation": "src/agents/solve/CLAUDE.md",
+      "coverage": "high"
+    },
+    {
+      "module_id": "src_agents_research",
+      "module_path": "src/agents/research",
+      "module_name": "Research - 深度研究系统 (DR-in-KG 2.0)",
+      "language": "Python",
+      "entry_files": ["research_pipeline.py", "main.py"],
+      "key_interfaces": ["ResearchPipeline.run()"],
+      "test_directory": null,
+      "important_paths": [
+        "agents/rephrase_agent.py",
+        "agents/decompose_agent.py",
+        "agents/manager_agent.py",
+        "agents/research_agent.py",
+        "agents/note_agent.py",
+        "agents/reporting_agent.py",
+        "data_structures.py",
+        "utils/citation_manager.py"
+      ],
+      "documentation": "src/agents/research/CLAUDE.md",
+      "coverage": "high"
+    },
+    {
+      "module_id": "src_agents_question",
+      "module_path": "src/agents/question",
+      "module_name": "Question - 智能题目生成系统",
+      "language": "Python",
+      "entry_files": ["coordinator.py"],
+      "key_interfaces": ["AgentCoordinator.generate_question()", "AgentCoordinator.generate_questions_custom()"],
+      "test_directory": null,
+      "important_paths": [
+        "agents/retrieve_agent.py",
+        "agents/generate_agent.py",
+        "agents/relevance_analyzer.py",
+        "prompts/zh/",
+        "prompts/en/"
+      ],
+      "documentation": "src/agents/question/CLAUDE.md",
+      "coverage": "high"
+    },
+    {
+      "module_id": "src_agents_chat",
+      "module_path": "src/agents/chat",
+      "module_name": "Chat - 多轮对话系统",
+      "language": "Python",
+      "entry_files": ["chat_agent.py", "session_manager.py"],
+      "key_interfaces": ["ChatAgent.process()", "SessionManager.create_session()"],
+      "test_directory": null,
+      "important_paths": [
+        "chat_agent.py",
+        "session_manager.py",
+        "prompts/en/chat_agent.yaml",
+        "prompts/zh/chat_agent.yaml"
+      ],
+      "documentation": "src/agents/chat/CLAUDE.md",
+      "coverage": "medium"
+    },
+    {
+      "module_id": "src_agents_guide",
+      "module_path": "src/agents/guide",
+      "module_name": "Guide - 引导式学习系统",
+      "language": "Python",
+      "entry_files": ["guide_manager.py"],
+      "key_interfaces": ["GuideManager.create_session()", "LocateAgent.process()", "InteractiveAgent.process()"],
+      "test_directory": null,
+      "important_paths": [
+        "agents/locate_agent.py",
+        "agents/interactive_agent.py",
+        "agents/chat_agent.py",
+        "agents/summary_agent.py",
+        "prompts/zh/"
+      ],
+      "documentation": "src/agents/guide/CLAUDE.md",
+      "coverage": "medium"
+    },
+    {
+      "module_id": "src_agents_co_writer",
+      "module_path": "src/agents/co_writer",
+      "module_name": "Co-Writer - AI 文本编辑与旁白",
+      "language": "Python",
+      "entry_files": ["edit_agent.py", "narrator_agent.py"],
+      "key_interfaces": ["EditAgent.process()", "NarratorAgent.generate_narration()"],
+      "test_directory": null,
+      "important_paths": [
+        "edit_agent.py",
+        "narrator_agent.py",
+        "prompts/en/",
+        "prompts/zh/"
+      ],
+      "documentation": "src/agents/co_writer/CLAUDE.md",
+      "coverage": "medium"
+    },
+    {
+      "module_id": "src_agents_ideagen",
+      "module_path": "src/agents/ideagen",
+      "module_name": "IdeaGen - 研究创意生成系统",
+      "language": "Python",
+      "entry_files": ["idea_generation_workflow.py", "material_organizer_agent.py"],
+      "key_interfaces": ["MaterialOrganizerAgent.process()", "IdeaGenerationWorkflow.loose_filter()"],
+      "test_directory": null,
+      "important_paths": [
+        "base_idea_agent.py",
+        "material_organizer_agent.py",
+        "idea_generation_workflow.py",
+        "prompts/zh/",
+        "prompts/en/"
+      ],
+      "documentation": "src/agents/ideagen/CLAUDE.md",
+      "coverage": "medium"
+    },
+    {
+      "module_id": "src_api",
+      "module_path": "src/api",
+      "module_name": "API - FastAPI 后端服务",
+      "language": "Python",
+      "entry_files": ["main.py", "run_server.py"],
+      "key_interfaces": ["FastAPI app", "WebSocket endpoints", "REST endpoints"],
+      "test_directory": null,
+      "important_paths": [
+        "routers/solve.py",
+        "routers/question.py",
+        "routers/research.py",
+        "routers/knowledge.py",
+        "routers/guide.py",
+        "routers/co_writer.py",
+        "routers/notebook.py",
+        "routers/ideagen.py",
+        "utils/history.py",
+        "utils/log_interceptor.py",
+        "utils/notebook_manager.py"
+      ],
+      "documentation": "src/api/CLAUDE.md",
+      "coverage": "high"
+    },
+    {
+      "module_id": "web",
+      "module_path": "web",
+      "module_name": "Web - Next.js 前端应用",
+      "language": "TypeScript",
+      "entry_files": ["app/layout.tsx", "app/page.tsx"],
+      "key_interfaces": ["Pages", "Components", "API Client"],
+      "test_directory": "tests/e2e",
+      "important_paths": [
+        "app/",
+        "components/",
+        "context/",
+        "lib/api.ts",
+        "i18n/",
+        "locales/"
+      ],
+      "documentation": "web/CLAUDE.md",
+      "coverage": "high"
+    }
+  ],
+  "statistics": {
+    "total_files_estimated": 450,
+    "scanned_files": 120,
+    "coverage_percentage": 26.67,
+    "python_files": 95,
+    "typescript_files": 45,
+    "yaml_files": 30,
+    "markdown_files": 60
+  },
+  "ignored_patterns": [
+    "node_modules/**",
+    ".git/**",
+    ".github/**",
+    "dist/**",
+    "build/**",
+    ".next/**",
+    "__pycache__/**",
+    "*.lock",
+    "*.log",
+    "*.bin",
+    "*.pdf",
+    "*.png",
+    "*.jpg",
+    "*.jpeg",
+    "*.gif",
+    "*.mp4",
+    "*.zip",
+    "*.tar",
+    "*.gz",
+    "data/user/**",
+    "data/knowledge_bases/**",
+    "run_code_workspace/**"
+  ],
+  "gaps": [
+    {
+      "module": "src/agents/solve",
+      "gap_type": "missing_tests",
+      "description": "部分 Agent 缺少单元测试"
+    },
+    {
+      "module": "src/agents/research",
+      "gap_type": "missing_tests",
+      "description": "缺少完整的测试覆盖"
+    },
+    {
+      "module": "src/agents/question",
+      "gap_type": "missing_tests",
+      "description": "缺少单元测试"
+    },
+    {
+      "module": "src/agents/chat",
+      "gap_type": "missing_tests",
+      "description": "缺少单元测试"
+    },
+    {
+      "module": "src/agents/guide",
+      "gap_type": "missing_tests",
+      "description": "缺少单元测试"
+    },
+    {
+      "module": "src/agents/co_writer",
+      "gap_type": "missing_tests",
+      "description": "缺少单元测试"
+    },
+    {
+      "module": "src/agents/ideagen",
+      "gap_type": "missing_tests",
+      "description": "缺少单元测试"
+    },
+    {
+      "module": "src/api",
+      "gap_type": "missing_tests",
+      "description": "缺少 API 集成测试"
+    },
+    {
+      "module": "web",
+      "gap_type": "partial_tests",
+      "description": "仅有 E2E 审计测试，缺少单元测试"
+    }
+  ],
+  "next_steps": [
+    "为各 Agent 模块添加单元测试（优先级：高）",
+    "补充 API 集成测试（优先级：高）",
+    "为前端组件添加单元测试（优先级：中）",
+    "扩展 E2E 测试覆盖（优先级：中）",
+    "补充 src/services/ 和 src/tools/ 模块文档（优先级：低）",
+    "添加性能基准测试（优先级：低）"
+  ],
+  "truncated": false,
+  "scan_mode": "adaptive",
+  "scan_depth": "module_priority"
+}
