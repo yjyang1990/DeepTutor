@@ -7,10 +7,12 @@ from fastapi.staticfiles import StaticFiles
 
 from src.api.routers import (
     agent_config,
+    analytics,
     chat,
     co_writer,
     config,
     dashboard,
+    evaluation,
     guide,
     ideagen,
     knowledge,
@@ -187,6 +189,7 @@ except Exception:
 app.mount("/api/outputs", StaticFiles(directory=str(user_dir)), name="outputs")
 
 # Include routers
+app.include_router(evaluation.router, prefix="/api/v1/evaluation", tags=["evaluation"])
 app.include_router(solve.router, prefix="/api/v1", tags=["solve"])
 app.include_router(chat.router, prefix="/api/v1", tags=["chat"])
 app.include_router(question.router, prefix="/api/v1/question", tags=["question"])
@@ -201,6 +204,7 @@ app.include_router(settings.router, prefix="/api/v1/settings", tags=["settings"]
 app.include_router(system.router, prefix="/api/v1/system", tags=["system"])
 app.include_router(config.router, prefix="/api/v1/config", tags=["config"])
 app.include_router(agent_config.router, prefix="/api/v1/agent-config", tags=["agent-config"])
+app.include_router(analytics.router, prefix="/api/v1/analytics", tags=["analytics"])
 
 
 @app.get("/")

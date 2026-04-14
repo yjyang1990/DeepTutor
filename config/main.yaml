@@ -66,6 +66,63 @@ solve:
       max_iterations: 3
     precision_answer_agent:
       enabled: true
+evaluation:
+  # AI Grading Configuration
+  llm:
+    provider: anthropic  # Use Claude for evaluation
+    model: claude-3-5-sonnet-20241022
+    max_tokens: 4096
+    temperature: 0.3
+  qdrant:
+    url: http://localhost:6333
+    collection_name: evaluation_rubrics
+    vector_size: 1536
+    distance: Cosine
+  grading:
+    default_max_score: 100.0
+    partial_credit_enabled: true
+    detailed_feedback_enabled: true
+  multimodal:
+    enabled: true
+    supported_image_types:
+      - image/png
+      - image/jpeg
+      - image/gif
+      - image/webp
+    max_image_size_mb: 10.0
+  paths:
+    rubrics_dir: ./data/evaluation/rubrics
+    grading_results_dir: ./data/evaluation/results
+
+analytics:
+  # Learning Analytics Configuration
+  llm:
+    provider: anthropic
+    model: claude-3-5-haiku-20241022
+    max_tokens: 2048
+    temperature: 0.3
+  qdrant:
+    url: http://localhost:6333
+    collection_name: student_profiles
+    vector_size: 1536
+    distance: Cosine
+  early_warning:
+    low_score: 70.0
+    medium_score: 60.0
+    high_score: 50.0
+    declining_trend: -5.0
+    volatility: 0.3
+  trajectory:
+    update_interval: 1
+    min_points: 3
+    prediction_lookback_count: 5
+    prediction_confidence_threshold: 0.7
+  paths:
+    profiles_dir: ./data/analytics/profiles
+    trajectories_dir: ./data/analytics/trajectories
+    warnings_dir: ./data/analytics/warnings
+    activities_dir: ./data/analytics/activities
+
 research:
   planning:
     rephrase:

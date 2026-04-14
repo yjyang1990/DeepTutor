@@ -478,6 +478,49 @@ python -c "import os; print(os.getenv('LLM_API_KEY'))"
 
 ---
 
+## gstack 集成
+
+本项目集成了 gstack 工具套件，用于浏览器自动化、QA 测试、代码审查和发布流程。
+
+### 浏览器交互规则
+
+**重要**：所有浏览器交互必须使用 `/browse` 技能，**绝不使用** `mcp__claude-in-chrome__*` 工具。
+
+### 可用技能
+
+- `/browse` - 快速无头浏览器，用于 QA 测试和站点验证
+- `/qa` - 系统化 QA 测试并修复发现的问题
+- `/qa-only` - 仅报告问题的 QA 测试（不修复）
+- `/qa-design-review` - 设计审查 + 修复循环
+- `/plan-design-review` - 仅报告的设计审查
+- `/plan-ceo-review` - CEO/创始人模式计划审查
+- `/plan-eng-review` - 工程经理模式计划审查
+- `/review` - 落地前 PR 审查
+- `/ship` - 发布工作流（合并、测试、版本、变更日志、PR）
+- `/setup-browser-cookies` - 从真实浏览器导入 cookies
+- `/retro` - 每周工程回顾
+- `/document-release` - 发布后文档更新
+
+### 故障排除
+
+如果 gstack 技能无法工作，运行以下命令重新构建二进制文件并注册技能：
+
+```bash
+cd .claude/skills/gstack && ./setup
+```
+
+**注意**：setup 脚本需要 [bun](https://bun.sh) 运行时。如果未安装，请先安装：
+
+```bash
+# macOS/Linux
+curl -fsSL https://bun.sh/install | bash
+
+# 或使用 npm
+npm install -g bun
+```
+
+---
+
 ## 常见问题 (FAQ)
 
 **Q: 如何切换 LLM 提供商？**
